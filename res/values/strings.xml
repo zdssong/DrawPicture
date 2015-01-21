@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">DrawPicture</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="pathTest">pathTest</string>
+    <string name="textTest">textText</string>
+    <string name="color">颜色</string>
+    <string name="color_red">红色</string>
+    <string name="color_green">绿色</string>
+    <string name="color_blue">蓝色</string>
+    <string name="width">线宽</string>
+    <string name="width_1">1号</string>
+    <string name="width_3">3号</string>
+    <string name="width_5">5号</string>
+    <string name="blur">模糊</string>
+    <string name="emboss">正常</string>
+    <string name="pinball">小球游戏</string>
+
+</resources>

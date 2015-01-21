@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <issue id="DrawAllocation">
+        <ignore path="src/com/test/PathTest.java" />
+        <ignore path="src/com/view/DrawView.java" />
+    </issue>
+    <issue id="InflateParams">
+        <ignore path="src/com/adapter/MainListAdapter.java" />
+    </issue>
+</lint>
