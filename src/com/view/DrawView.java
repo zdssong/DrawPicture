@@ -1,5 +1,8 @@
 package com.view;
 
+import com.tools.Tools;
+
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
@@ -16,20 +19,22 @@ public class DrawView extends View {
 	float preY;
 	private Path mPath;
 	public Paint mPaint;
-	final int VIEW_WIDTH = 320;
-	final int VIEW_HEIGH = 480;
+	int VIEW_WIDTH = 320;
+	int VIEW_HEIGH = 480;
 	Bitmap cacheBitmap = null;
 	Canvas cacheCanvas = null;
 
 	public DrawView(Context context) {
 		super(context);
 		// TODO Auto-generated constructor stub
-		
+
 	}
 
 	public DrawView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		// TODO Auto-generated constructor stub
+		VIEW_WIDTH = Tools.getWindowWidth((Activity) context);
+		VIEW_HEIGH = Tools.getWindowHeigh((Activity) context);
 		cacheBitmap = Bitmap.createBitmap(VIEW_WIDTH, VIEW_HEIGH,
 				Config.ARGB_8888);
 		cacheCanvas = new Canvas();

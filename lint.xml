@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <lint>
+    <issue id="ClickableViewAccessibility">
+        <ignore path="src/com/pinballgame/PinBall.java" />
+        <ignore path="src/com/view/DrawView.java" />
+    </issue>
     <issue id="DrawAllocation">
         <ignore path="src/com/test/PathTest.java" />
         <ignore path="src/com/view/DrawView.java" />

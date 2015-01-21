@@ -10,6 +10,7 @@ import android.graphics.RectF;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 
 public class TextTest extends Activity {
 
@@ -18,6 +19,8 @@ public class TextTest extends Activity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(new TextView(this));
 	}
 
@@ -51,7 +54,7 @@ public class TextTest extends Activity {
 			// TODO Auto-generated method stub
 			super.onDraw(canvas);
 			canvas.drawColor(Color.WHITE);
-			
+
 			canvas.translate(40, 40);
 			paint.setTextAlign(Paint.Align.RIGHT);
 			paint.setTextSize(20);

@@ -3,7 +3,7 @@ package com.pinballgame;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
-
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -15,8 +15,10 @@ import android.os.Message;
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnKeyListener;
+import android.view.View.OnTouchListener;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -37,6 +39,7 @@ public class PinBall extends Activity {
 	private int racketX = random.nextInt(200);
 	private boolean isLose = false;
 
+	@SuppressLint("HandlerLeak")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -79,6 +82,20 @@ public class PinBall extends Activity {
 				case KeyEvent.KEYCODE_D:
 					if (racketX < tableWidth - RACKET_WIDTH)
 						racketX += 10;
+					break;
+				}
+				gameView.invalidate();
+				return true;
+			}
+		});
+		gameView.setOnTouchListener(new OnTouchListener() {
+
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				// TODO Auto-generated method stub
+				switch (event.getAction()) {
+				case MotionEvent.ACTION_MOVE:
+					racketX = (int) event.getX();
 					break;
 				}
 				gameView.invalidate();
