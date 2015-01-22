@@ -1,7 +1,5 @@
 package com.drawpicture;
 
-import com.view.MatrixChangeView;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Window;
@@ -9,7 +7,7 @@ import android.view.WindowManager;
 
 public class MatrixChangeViewActivity extends Activity {
 
-	private MatrixChangeView matrixChangeView = null;
+//	private MatrixChangeView matrixChangeView = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +22,7 @@ public class MatrixChangeViewActivity extends Activity {
 	}
 
 	private void initView() {
-		matrixChangeView = (MatrixChangeView) findViewById(R.id.matrixchangeview);
+//		matrixChangeView = (MatrixChangeView) findViewById(R.id.matrixchangeview);
 	}
 
 }
