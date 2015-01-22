@@ -16,5 +16,8 @@
     <string name="blur">模糊</string>
     <string name="emboss">正常</string>
     <string name="pinball">小球游戏</string>
+    <string name="rectangle">矩形</string>
+    <string name="circle">圆形</string>
+    <string name="oval">椭圆</string>
 
 </resources>

@@ -22,7 +22,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
 	private ListView listView;
 	private List<String> itemList;
 	private String[] itemName = new String[] { "PathTest", "TextTest",
-			"DrawView", "BallGame" };
+			"DrawView", "BallGame", "MatrixChangeView" };
 	private MainListAdapter adapter;
 
 	@Override
@@ -36,7 +36,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
 
 	private void initListView() {
 		itemList = new ArrayList<String>();
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < itemName.length; i++) {
 			itemList.add(itemName[i]);
 		}
 		listView = (ListView) findViewById(R.id.listview);
@@ -66,6 +66,9 @@ public class MainActivity extends Activity implements OnItemClickListener {
 			break;
 		case 3:
 			intent.setClass(MainActivity.this, PinBall.class);
+			break;
+		case 4:
+			intent.setClass(MainActivity.this, MatrixChangeViewActivity.class);
 			break;
 		}
 		startActivity(intent);

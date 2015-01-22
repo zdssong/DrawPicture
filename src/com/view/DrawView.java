@@ -1,8 +1,5 @@
 package com.view;
 
-import com.tools.Tools;
-
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
@@ -19,8 +16,8 @@ public class DrawView extends View {
 	float preY;
 	private Path mPath;
 	public Paint mPaint;
-	int VIEW_WIDTH = 320;
-	int VIEW_HEIGH = 480;
+	int VIEW_WIDTH = 20;
+	int VIEW_HEIGH = 20;
 	Bitmap cacheBitmap = null;
 	Canvas cacheCanvas = null;
 
@@ -33,19 +30,25 @@ public class DrawView extends View {
 	public DrawView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		// TODO Auto-generated constructor stub
-		VIEW_WIDTH = Tools.getWindowWidth((Activity) context);
-		VIEW_HEIGH = Tools.getWindowHeigh((Activity) context);
+		VIEW_HEIGH = getHeight();
+		VIEW_WIDTH = getWidth();
 		cacheBitmap = Bitmap.createBitmap(VIEW_WIDTH, VIEW_HEIGH,
 				Config.ARGB_8888);
 		cacheCanvas = new Canvas();
-		mPath = new Path();
 		cacheCanvas.setBitmap(cacheBitmap);
+		mPath = new Path();
 		mPaint = new Paint(Paint.DITHER_FLAG);
 		mPaint.setColor(Color.RED);
 		mPaint.setStyle(Paint.Style.STROKE);
 		mPaint.setStrokeWidth(1);
 		mPaint.setAntiAlias(true);
 		mPaint.setDither(true);
+	}
+
+	@Override
+	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+		// TODO Auto-generated method stub
+		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 	}
 
 	public DrawView(Context context, AttributeSet attrs, int defStyleAttr) {
