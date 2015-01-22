@@ -1,5 +1,8 @@
 package com.view;
 
+import com.tools.Tools;
+
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
@@ -30,8 +33,8 @@ public class DrawView extends View {
 	public DrawView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		// TODO Auto-generated constructor stub
-		VIEW_HEIGH = getHeight();
-		VIEW_WIDTH = getWidth();
+		VIEW_HEIGH = Tools.getWindowHeigh((Activity)context);
+		VIEW_WIDTH = Tools.getWindowWidth((Activity)context);
 		cacheBitmap = Bitmap.createBitmap(VIEW_WIDTH, VIEW_HEIGH,
 				Config.ARGB_8888);
 		cacheCanvas = new Canvas();
