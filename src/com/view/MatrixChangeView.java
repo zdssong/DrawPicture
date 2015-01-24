@@ -31,11 +31,6 @@ public class MatrixChangeView extends View {
 	public MatrixChangeView(Context context) {
 		super(context);
 		// TODO Auto-generated constructor stub
-		bitmap = ((BitmapDrawable) context.getResources().getDrawable(
-				R.drawable.ic_launcher)).getBitmap();
-		width = bitmap.getWidth();
-		height = bitmap.getHeight();
-		this.setFocusable(true);
 	}
 
 	public MatrixChangeView(Context context, AttributeSet attrs) {
@@ -56,6 +51,7 @@ public class MatrixChangeView extends View {
 		int secondPointPostX = 0, secondPointPostY = 0;
 		int distance = 0;
 		int pointerCount = event.getPointerCount();
+		System.out.println(pointerCount);
 		switch (event.getAction()) {
 		case MotionEvent.ACTION_DOWN:
 			if (pointerCount >= 2) {
@@ -68,13 +64,13 @@ public class MatrixChangeView extends View {
 			break;
 		case MotionEvent.ACTION_MOVE:
 			if (pointerCount >= 2) {
-				firstPointPostX = (int) event.getX(0);
-				firstPointPostY = (int) event.getY(0);
-				secondPointPostX = (int) event.getX(1);
-				secondPointPostY = (int) event.getY(1);
-				distance = Math.abs(firstPointPostX - secondPointPostX);
-				scale = distance / this.distance;
-				isScale = true;
+				// firstPointPostX = (int) event.getX(0);
+				// firstPointPostY = (int) event.getY(0);
+				// secondPointPostX = (int) event.getX(1);
+				// secondPointPostY = (int) event.getY(1);
+				// distance = Math.abs(firstPointPostX - secondPointPostX);
+				// scale = distance / this.distance;
+				// isScale = true;
 			}
 			break;
 		case MotionEvent.ACTION_UP:

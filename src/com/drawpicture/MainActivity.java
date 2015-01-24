@@ -22,7 +22,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
 	private ListView listView;
 	private List<String> itemList;
 	private String[] itemName = new String[] { "PathTest", "TextTest",
-			"DrawView", "BallGame", "MatrixChangeView" };
+			"DrawView", "BallGame", "MatrixChangeView", "MoveBack" };
 	private MainListAdapter adapter;
 
 	@Override
@@ -52,7 +52,6 @@ public class MainActivity extends Activity implements OnItemClickListener {
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
 		// TODO Auto-generated method stub
-		System.out.println("I'm in");
 		Intent intent = new Intent();
 		switch (position) {
 		case 0:
@@ -69,6 +68,9 @@ public class MainActivity extends Activity implements OnItemClickListener {
 			break;
 		case 4:
 			intent.setClass(MainActivity.this, MatrixChangeViewActivity.class);
+			break;
+		case 5:
+			intent.setClass(MainActivity.this, MoveBackActivity.class);
 			break;
 		}
 		startActivity(intent);
