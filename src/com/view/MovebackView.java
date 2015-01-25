@@ -13,7 +13,10 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.View;
 
-public class Moveback extends View {
+/**
+ * 该View目前只能移动背景
+ * */
+public class MovebackView extends View {
 	// 记录背景位图的实际高度
 	final int BACK_HEIGHT = 1700;
 	// 背景图片
@@ -24,7 +27,7 @@ public class Moveback extends View {
 	final int HEIGHT = 440;
 	private int startY = BACK_HEIGHT - HEIGHT;
 
-	public Moveback(Context context) {
+	public MovebackView(Context context) {
 		super(context);
 		// TODO Auto-generated constructor stub
 		back = BitmapFactory.decodeResource(context.getResources(),

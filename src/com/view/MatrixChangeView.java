@@ -11,6 +11,9 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
+/**
+ * 该View目前还没有实现如何功能
+ * */
 public class MatrixChangeView extends View {
 
 	private Bitmap bitmap;

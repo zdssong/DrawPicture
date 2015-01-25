@@ -14,6 +14,9 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
+/**
+ * 该View的目前的功能是画线
+ * */
 public class DrawView extends View {
 	float preX;
 	float preY;

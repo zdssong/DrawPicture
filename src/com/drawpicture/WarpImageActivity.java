@@ -1,14 +1,15 @@
 package com.drawpicture;
 
-import com.view.MovebackView;
+import com.view.WarpImageView;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 
-public class MoveBackActivity extends Activity {
-	private MovebackView moveback;
+public class WarpImageActivity extends Activity {
+
+	private WarpImageView warpImageView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -17,8 +18,8 @@ public class MoveBackActivity extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		moveback = new MovebackView(this);
-		setContentView(moveback);
+		warpImageView = new WarpImageView(this);
+		setContentView(warpImageView);
 	}
 
 }
