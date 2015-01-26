@@ -40,6 +40,10 @@
         </activity>
         <activity android:name=".FrameActivity" >
         </activity>
+        <activity android:name=".FlowerTweenActivity" >
+        </activity>
+        <activity android:name=".ButterflyActivity" >
+        </activity>
     </application>
 
 </manifest>
