@@ -19,5 +19,13 @@
     <string name="rectangle">矩形</string>
     <string name="circle">圆形</string>
     <string name="oval">椭圆</string>
+    <string name="bn1">位图</string>
+    <string name="bn2">线性渐变</string>
+    <string name="bn3">圆形渐变</string>
+    <string name="bn4">角度渐变</string>
+    <string name="bn5">模仿</string>
+    <string name="start">开始</string>
+    <string name="stop">停止</string>
+    <string name="contentDescription">图片描述</string>
 
 </resources>

@@ -36,6 +36,10 @@
         </activity>
         <activity android:name=".WarpImageActivity" >
         </activity>
+        <activity android:name=".ShaderActivity" >
+        </activity>
+        <activity android:name=".FrameActivity" >
+        </activity>
     </application>
 
 </manifest>
