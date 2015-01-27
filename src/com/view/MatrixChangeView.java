@@ -20,15 +20,13 @@ public class MatrixChangeView extends View {
 	private Matrix matrix = new Matrix();
 	private float sx = 0.0f;
 	private float sy = 0.0f;
-	private int width = 2, height = 2;
-	private float scale = 1.0f;
+	private int width = 0, height = 0;
+	private float scaleX = 1.0f;
+	private float scaleY = 1.0f;
 	private boolean isScale = false;
 
-	private int viewHeight = 0;
-	private int viewWidth = 0;
-
-	private int firstPointPreX = 0, firstPointPreY = 0;
-	private int secondPointPreX = 0, secondPointPreY = 0;
+	private int firstPointPreX = 0;
+	private int secondPointPreX = 0;
 	private float distance = 0;
 
 	public MatrixChangeView(Context context) {
@@ -50,35 +48,36 @@ public class MatrixChangeView extends View {
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 		// TODO Auto-generated method stub
-		int firstPointPostX = 0, firstPointPostY = 0;
-		int secondPointPostX = 0, secondPointPostY = 0;
+		int firstPointPostX = 0;
+		int secondPointPostX = 0;
 		int distance = 0;
 		int pointerCount = event.getPointerCount();
 		switch (event.getAction()) {
 		case MotionEvent.ACTION_DOWN:
 			if (pointerCount >= 2) {
 				firstPointPreX = (int) event.getX(0);
-				firstPointPreY = (int) event.getY(0);
 				secondPointPreX = (int) event.getX(1);
-				secondPointPreY = (int) event.getY(1);
 				this.distance = Math.abs(firstPointPreX - secondPointPreX);
 			}
 			break;
 		case MotionEvent.ACTION_MOVE:
 			if (pointerCount >= 2) {
-				 firstPointPostX = (int) event.getX(0);
-				 firstPointPostY = (int) event.getY(0);
-				 secondPointPostX = (int) event.getX(1);
-				 secondPointPostY = (int) event.getY(1);
-				 distance = Math.abs(firstPointPostX - secondPointPostX);
-				 scale = distance / this.distance;
-				 isScale = true;
+				firstPointPostX = (int) event.getX(0);
+				secondPointPostX = (int) event.getX(1);
+				distance = Math.abs(firstPointPostX - secondPointPostX);
+				scaleX = distance / this.distance;
+				System.out.println("Scale: " + scaleX);
+				if (scaleX > 3.0)
+					scaleX = 2.0f;
+				if (scaleX < 0.2)
+					scaleX = 0.2f;
+				isScale = true;
 			}
 			break;
 		case MotionEvent.ACTION_UP:
 			break;
 		}
-		invalidate();
+		postInvalidate();
 		return true;
 	}
 
@@ -87,18 +86,17 @@ public class MatrixChangeView extends View {
 	protected void onDraw(Canvas canvas) {
 		// TODO Auto-generated method stub
 		super.onDraw(canvas);
-		viewHeight = getHeight();
-		viewWidth = getWidth();
 		matrix.reset();
 		if (!isScale) {
 			matrix.setSkew(sx, sy);
 		} else {
-			matrix.setScale(scale, scale);
+			matrix.setScale(scaleX, scaleY);
 		}
 		Bitmap bitmap2 = bitmap.createBitmap(bitmap, 0, 0, width, height,
 				matrix, true);
-//		matrix.setTranslate((viewWidth - width) / 2, (viewHeight - height) / 2);
-		canvas.drawBitmap(bitmap2, viewWidth/2, viewHeight/2, null);
+		int viewHeight = (getHeight() - bitmap2.getHeight()) / 2;
+		int viewWidth = (getWidth() - bitmap2.getWidth()) / 2;
+		canvas.drawBitmap(bitmap2, viewWidth, viewHeight, null);
 	}
 
 }

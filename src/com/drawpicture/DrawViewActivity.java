@@ -1,6 +1,5 @@
 package com.drawpicture;
 
-import com.view.BorderTextView;
 import com.view.DrawView;
 
 import android.app.Activity;
