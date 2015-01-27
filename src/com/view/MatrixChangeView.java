@@ -24,10 +24,12 @@ public class MatrixChangeView extends View {
 	private float scaleX = 1.0f;
 	private float scaleY = 1.0f;
 	private boolean isScale = false;
+	private boolean isRotate = false;
+	private boolean isTranlate = false;
 
 	private int firstPointPreX = 0, firstPointPreY = 0;
 	private int secondPointPreX = 0, secondPointPreY = 0;
-	private float distanceX = 1, distanceY = 1 ;
+	private float distanceX = 1, distanceY = 1;
 
 	private boolean isFirst = true;
 
@@ -103,10 +105,14 @@ public class MatrixChangeView extends View {
 		// TODO Auto-generated method stub
 		super.onDraw(canvas);
 		matrix.reset();
-		if (!isScale) {
-			matrix.setSkew(sx, sy);
-		} else {
+		if (isScale) {
 			matrix.postScale(scaleX, scaleY);
+		}
+		if (isTranlate) {
+			matrix.setSkew(sx, sy);
+		}
+		if (isRotate) {
+			matrix.postRotate(18);
 		}
 		Bitmap bitmap2 = Bitmap.createBitmap(bitmap, 0, 0, width, height,
 				matrix, true);
