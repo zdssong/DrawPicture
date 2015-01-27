@@ -7,6 +7,7 @@
     <issue id="DrawAllocation">
         <ignore path="src/com/test/PathTest.java" />
         <ignore path="src/com/view/DrawView.java" />
+        <ignore path="src/com/view/MatrixChangeView.java" />
         <ignore path="src/com/view/Moveback.java" />
         <ignore path="src/com/view/MovebackView.java" />
     </issue>

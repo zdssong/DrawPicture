@@ -1,7 +1,5 @@
 package com.drawpicture;
 
-import com.view.DrawView;
-
 import android.app.Activity;
 import android.graphics.BlurMaskFilter;
 import android.graphics.Color;
@@ -14,6 +12,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
+
+import com.view.DrawView;
 
 public class DrawViewActivity extends Activity implements OnClickListener {
 
