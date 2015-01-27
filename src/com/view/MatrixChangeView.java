@@ -54,7 +54,6 @@ public class MatrixChangeView extends View {
 		int secondPointPostX = 0, secondPointPostY = 0;
 		int distance = 0;
 		int pointerCount = event.getPointerCount();
-		System.out.println(pointerCount);
 		switch (event.getAction()) {
 		case MotionEvent.ACTION_DOWN:
 			if (pointerCount >= 2) {
@@ -67,19 +66,19 @@ public class MatrixChangeView extends View {
 			break;
 		case MotionEvent.ACTION_MOVE:
 			if (pointerCount >= 2) {
-				// firstPointPostX = (int) event.getX(0);
-				// firstPointPostY = (int) event.getY(0);
-				// secondPointPostX = (int) event.getX(1);
-				// secondPointPostY = (int) event.getY(1);
-				// distance = Math.abs(firstPointPostX - secondPointPostX);
-				// scale = distance / this.distance;
-				// isScale = true;
+				 firstPointPostX = (int) event.getX(0);
+				 firstPointPostY = (int) event.getY(0);
+				 secondPointPostX = (int) event.getX(1);
+				 secondPointPostY = (int) event.getY(1);
+				 distance = Math.abs(firstPointPostX - secondPointPostX);
+				 scale = distance / this.distance;
+				 isScale = true;
 			}
 			break;
 		case MotionEvent.ACTION_UP:
 			break;
 		}
-		postInvalidate();
+		invalidate();
 		return true;
 	}
 
@@ -98,8 +97,8 @@ public class MatrixChangeView extends View {
 		}
 		Bitmap bitmap2 = bitmap.createBitmap(bitmap, 0, 0, width, height,
 				matrix, true);
-		matrix.setTranslate((viewWidth - width) / 2, (viewHeight - height) / 2);
-		canvas.drawBitmap(bitmap2, matrix, null);
+//		matrix.setTranslate((viewWidth - width) / 2, (viewHeight - height) / 2);
+		canvas.drawBitmap(bitmap2, viewWidth/2, viewHeight/2, null);
 	}
 
 }

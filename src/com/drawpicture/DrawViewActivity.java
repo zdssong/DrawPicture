@@ -1,5 +1,6 @@
 package com.drawpicture;
 
+import com.view.BorderTextView;
 import com.view.DrawView;
 
 import android.app.Activity;
@@ -10,13 +11,17 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
 
-public class DrawViewActivity extends Activity {
+public class DrawViewActivity extends Activity implements OnClickListener {
 
 	EmbossMaskFilter emboss;
 	BlurMaskFilter blur;
+
+	private DrawView dView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -26,9 +31,11 @@ public class DrawViewActivity extends Activity {
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.activity_drawview);
+		dView = (DrawView) findViewById(R.id.drawView);
 		emboss = new EmbossMaskFilter(new float[] { 1.5f, 1.5f, 1.5f }, 0.6f,
 				6, 4.2f);
 		blur = new BlurMaskFilter(8, BlurMaskFilter.Blur.NORMAL);
+		initListener();
 	}
 
 	@Override
@@ -42,7 +49,6 @@ public class DrawViewActivity extends Activity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// TODO Auto-generated method stub
-		DrawView dView = (DrawView) findViewById(R.id.drawView);
 		switch (item.getItemId()) {
 		case R.id.red:
 			dView.mPaint.setColor(Color.RED);
@@ -78,5 +84,39 @@ public class DrawViewActivity extends Activity {
 			break;
 		}
 		return true;
+	}
+
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		switch (v.getId()) {
+		case R.id.circle:
+			dView.setDrawCircle(true);
+			dView.setDrawRectangle(false);
+			dView.setDrawOval(false);
+			break;
+		case R.id.rectangle:
+			dView.setDrawRectangle(true);
+			dView.setDrawOval(false);
+			dView.setDrawCircle(false);
+			break;
+		case R.id.oval:
+			dView.setDrawOval(true);
+			dView.setDrawCircle(false);
+			dView.setDrawRectangle(false);
+			break;
+		case R.id.line:
+			dView.setDrawOval(false);
+			dView.setDrawCircle(false);
+			dView.setDrawRectangle(false);
+			break;
+		}
+	}
+
+	private void initListener() {
+		findViewById(R.id.circle).setOnClickListener(this);
+		findViewById(R.id.rectangle).setOnClickListener(this);
+		findViewById(R.id.oval).setOnClickListener(this);
+		findViewById(R.id.line).setOnClickListener(this);
 	}
 }
