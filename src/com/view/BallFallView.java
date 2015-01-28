@@ -1,17 +1,21 @@
 package com.view;
 
 import java.util.ArrayList;
+
+import com.drawpicture.R;
 import com.model.ShapeHolder;
+
 import android.animation.Animator;
+import android.animation.AnimatorInflater;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
+import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.animation.ValueAnimator.AnimatorUpdateListener;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RadialGradient;
 import android.graphics.Shader;
@@ -32,7 +36,14 @@ public class BallFallView extends View implements AnimatorUpdateListener {
 	public BallFallView(Context context) {
 		super(context);
 		// TODO Auto-generated constructor stub
-		setBackgroundColor(Color.WHITE);
+		// 加载动画资源
+		ObjectAnimator colorAnim = (ObjectAnimator) AnimatorInflater
+				.loadAnimator(context, R.animator.color_anim);
+		colorAnim.setEvaluator(new ArgbEvaluator());
+		// 对该View本身应用属性动画
+		colorAnim.setTarget(this);
+		// 开始指定动画
+		colorAnim.start();
 	}
 
 	@SuppressLint("InlinedApi")
