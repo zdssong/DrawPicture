@@ -1,15 +1,14 @@
 package com.view;
 
 import java.util.ArrayList;
-
 import com.model.ShapeHolder;
-
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.animation.ValueAnimator.AnimatorUpdateListener;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -21,6 +20,7 @@ import android.graphics.drawable.shapes.OvalShape;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
+import android.view.animation.DecelerateInterpolator;
 
 public class BallFallView extends View implements AnimatorUpdateListener {
 
@@ -35,6 +35,7 @@ public class BallFallView extends View implements AnimatorUpdateListener {
 		setBackgroundColor(Color.WHITE);
 	}
 
+	@SuppressLint("InlinedApi")
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 		// TODO Auto-generated method stub
@@ -52,7 +53,48 @@ public class BallFallView extends View implements AnimatorUpdateListener {
 				endY);
 		fallAnim.setDuration(duration);
 		fallAnim.setInterpolator(new AccelerateInterpolator());
-		fallAnim.addUpdateListener(this);
+		// fallAnim.addUpdateListener(this);
+
+		ValueAnimator squashAnim1 = ObjectAnimator.ofFloat(newBall, "x",
+				newBall.getX(), newBall.getX() - BALL_SIZE / 2);
+		squashAnim1.setDuration(duration / 4);
+		squashAnim1.setRepeatCount(1);
+		squashAnim1.setRepeatMode(ValueAnimator.REVERSE);
+		squashAnim1.setInterpolator(new DecelerateInterpolator());
+
+		ValueAnimator squashAnim2 = ObjectAnimator.ofFloat(newBall, "width",
+				newBall.getWidth(), newBall.getWidth() + BALL_SIZE);
+		squashAnim2.setDuration(duration / 4);
+		squashAnim2.setRepeatCount(1);
+		squashAnim2.setRepeatMode(ValueAnimator.REVERSE);
+		squashAnim2.setInterpolator(new DecelerateInterpolator());
+
+		ObjectAnimator stretchAnim1 = ObjectAnimator.ofFloat(newBall, "y",
+				endY, endY + BALL_SIZE / 2);
+		stretchAnim1.setDuration(duration / 4);
+		stretchAnim1.setRepeatCount(1);
+		stretchAnim1.setRepeatMode(ValueAnimator.REVERSE);
+		stretchAnim1.setInterpolator(new DecelerateInterpolator());
+
+		ValueAnimator stretchAnim2 = ObjectAnimator.ofFloat(newBall, "height",
+				newBall.getHeight(), newBall.getHeight() - BALL_SIZE / 2);
+		stretchAnim2.setDuration(duration / 4);
+		stretchAnim2.setRepeatCount(1);
+		stretchAnim2.setRepeatMode(ValueAnimator.REVERSE);
+		stretchAnim2.setInterpolator(new DecelerateInterpolator());
+
+		ObjectAnimator bounceBackAnim = ObjectAnimator.ofFloat(newBall, "y",
+				endY, startY);
+		bounceBackAnim.setDuration(duration);
+		bounceBackAnim.setInterpolator(new DecelerateInterpolator());
+
+		AnimatorSet bouncer = new AnimatorSet();
+		bouncer.play(fallAnim).before(squashAnim1);
+		bouncer.play(squashAnim1).with(squashAnim2);
+		bouncer.play(squashAnim1).with(stretchAnim1);
+		bouncer.play(squashAnim1).with(stretchAnim2);
+		bouncer.play(bounceBackAnim).after(stretchAnim2);
+
 		ObjectAnimator fadeAnim = ObjectAnimator.ofFloat(newBall, "alpha", 1f,
 				0f);
 		fadeAnim.setDuration(250);
@@ -66,9 +108,9 @@ public class BallFallView extends View implements AnimatorUpdateListener {
 			}
 
 		});
-		fadeAnim.addUpdateListener(this);
+		// fadeAnim.addUpdateListener(this);
 		AnimatorSet animatorSet = new AnimatorSet();
-		animatorSet.play(fallAnim).before(fadeAnim);
+		animatorSet.play(bouncer).before(fadeAnim);
 		animatorSet.start();
 		return true;
 	}
