@@ -44,6 +44,8 @@
         </activity>
         <activity android:name=".ButterflyActivity" >
         </activity>
+        <activity android:name=".BallFallActivity" >
+        </activity>
     </application>
 
 </manifest>

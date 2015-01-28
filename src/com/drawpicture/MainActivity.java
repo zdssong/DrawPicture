@@ -23,7 +23,8 @@ public class MainActivity extends Activity implements OnItemClickListener {
 	private List<String> itemList;
 	private String[] itemName = new String[] { "PathTest", "TextTest",
 			"DrawView", "BallGame", "MatrixChangeView", "MoveBack",
-			"WarpImage", "Shader", "FrameAnimation", "flowerTween", "butterfly" };
+			"WarpImage", "Shader", "FrameAnimation", "flowerTween",
+			"butterfly", "ballfall" };
 	private MainListAdapter adapter;
 
 	@Override
@@ -87,6 +88,9 @@ public class MainActivity extends Activity implements OnItemClickListener {
 			break;
 		case 10:
 			intent.setClass(MainActivity.this, ButterflyActivity.class);
+			break;
+		case 11:
+			intent.setClass(MainActivity.this, BallFallActivity.class);
 			break;
 		}
 		startActivity(intent);
